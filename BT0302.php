@@ -121,42 +121,40 @@ else{
 echo "<br><br>";
 //1. Nhập tháng-> số ngày trong tháng?
 echo "<b><u>Bai 1</u> :</b> ";
-$month=2;$year=2000;
-if($month==2){
-    if($year%400==0 || $year % 4 == 0 && $year % 100 != 0){
-        $date=29;
-    }
-    else{$date=28;}
-    echo "thang $month nam $year co $date ngay";
-}
-else{
+$month=13;$year=2000;
     switch($month){
         case 1:
+        case 2: if($year%400==0 || $year % 4 == 0 && $year % 100 != 0){
+            $date=29;
+        }
+        else{$date=28;};echo "thang $month nam $year co $date ngay";break;
+        // echo "thang $month nam $year co $date ngay";break;
         case 3:
         case 5:
         case 7:
         case 8:
         case 10:
         case 12:
-            $date=31;break;
+            $date=31;echo "thang $month co $date ngay";break;
         case 4:
         case 6:
         case 9:
         case 11:
-            $date=30;break;
+            $date=30;echo "thang $month co $date ngay";break;
+        default: echo"Nhap thang trong khoang 1-12:";break;
     };
-    echo "thang $month co $date ngay";
-}
+    
 echo "<br><br>";
 
 //2. Nhập ngày (gồm ngày, tháng, năm), ktra tính hợp lệ của ngày vừa nhập
 
 //3. Nhập ngày bất kì->hôm sau là ngày mấy
 echo "<b><u>Bai 3</u> :</b> ";
-$day=array(4,11,1700);
+$day=array(4,12,2000);
 // echo $day[0]."<br>";
-if(1<= $day[1]&& $day[1] <=12&&$day[2]>0){
+// if(1<= $day[1]&& $day[1] <=12&&$day[2]>0){
     $check=true;
+    $month=true;
     switch($day[1]){
         case 1: case 3: case 5: case 7: case 8: case 10: 
             if ($day[0]==31){
@@ -201,16 +199,16 @@ if(1<= $day[1]&& $day[1] <=12&&$day[2]>0){
             }
             else {$check=false;
             };break;
-        
+        default: $month=false;break;
     }
-    if($check==false){
-        echo"Ngay khong hop le";
+    if($check==false||$month==false){
+        echo"Ngay thang khong hop le";
     }
     else{echo "ngay tiep theo la $day[0]/$day[1]/$day[2]";}
-}
-else {
-    echo "Thang khong hop le";
-}
+// }
+// else {
+//     echo "Thang khong hop le";
+// }
 
 echo "<br><br>";
 
